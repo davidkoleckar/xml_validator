@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:element name="notes" type="NotesType"/>
+<xs:complexType name="NotesType">
+    <xs:choice minOccurs="1" maxOccurs="unbounded">
+      <xs:element name="note" type="NoteType"/>
+    </xs:choice>
+</xs:complexType>
+
+<xs:complexType name="NoteType">
+  <xs:all>
+
+    <xs:element name="id" type="xs:integer"/>
+
+    <xs:element name="date" type="xs:date"/>
+    
+    <xs:element name="heading">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Test"/>
+          <xs:enumeration value="Reminder"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:element>
+
+    <xs:element name="body">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:pattern value=".*"/>
+          <xs:minLength value="5"/>
+          <xs:maxLength value="100"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:element>
+
+  </xs:all>
+</xs:complexType>
+
+</xs:schema>
